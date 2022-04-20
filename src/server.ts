@@ -3,7 +3,9 @@ import dotenv from "dotenv";
 
 import { routes } from "./routes";
 
-dotenv.config();
+if (process.env.NODE_ENV !== 'production') {
+    dotenv.config();
+}
 
 const port = process.env.SERVER_PORT;
 const app = express();
