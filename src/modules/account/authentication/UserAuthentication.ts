@@ -3,6 +3,7 @@ import { sign, Secret } from "jsonwebtoken";
 import dotenv from "dotenv";
 
 import { prisma } from "../../../database/prismaClient";
+import { Clients, Deliveryman, Prisma } from "@prisma/client";
 
 if (process.env.NODE_ENV !== 'production') {
     dotenv.config();
@@ -10,16 +11,19 @@ if (process.env.NODE_ENV !== 'production') {
 
 interface IUserAuthentication {
     username: string,
+    userCategory: string,
     password: string,
 }
 
 export class UserAuthentication {
-    async execute({ username, password }: IUserAuthentication) {
-        const user = await prisma.clients.findFirst({
-            where: {
-                username,
-            },
-        });
+    async execute({ username, userCategory = "", password }: IUserAuthentication) {
+
+        const [user]: Clients[] | Deliveryman[] = await prisma.$queryRaw`
+            SELECT username, password, id 
+            FROM ${Prisma.raw(userCategory)} 
+            WHERE username=${username} 
+            LIMIT 1
+        `;
 
         if (!user)
             throw new Error("Invalid credentials!");
