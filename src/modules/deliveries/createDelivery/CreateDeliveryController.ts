@@ -16,6 +16,6 @@ export class CreateDeliveryController {
             fk_id_client: clientId,
         });
 
-        res.json(newDelivery);
+        return res.json(newDelivery);
     }
 }

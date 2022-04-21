@@ -6,6 +6,6 @@ export class FindOpenDeliveryRequestsController {
         const findOpenDeliveryRequests = new FindOpenDeliveryRequests();
         const deliveryRequests = await findOpenDeliveryRequests.execute();
 
-        res.json(deliveryRequests);
+        return res.json(deliveryRequests);
     }
 }
