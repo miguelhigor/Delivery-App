@@ -6,6 +6,7 @@ import { FindDeliveriesByClientController } from "./modules/clients/findDeliveri
 import { CreateDeliveryController } from "./modules/deliveries/createDelivery/CreateDeliveryController";
 import { DeliveryAssignController } from "./modules/deliveries/deliveryAssign/DeliveryAssignController";
 import { FindOpenDeliveryRequestsController } from "./modules/deliveries/findOpenDeliveryRequests/FindOpenDeliveryRequestsController";
+import { FinishDeliveryController } from "./modules/deliveries/finishDelivery/FinishDeliveryController";
 import { CreateDeliverymanController } from "./modules/deliveryman/createDeliveryman/CreateDeliverymanController";
 import { FindDeliveriesByDeliverymanController } from "./modules/deliveryman/findDeliveriesByDeliveryman/FindDeliveriesByDeliverymanController";
 
@@ -46,5 +47,9 @@ routes.get("/delivery/open-delivery-requests", authCheck, findOpenDeliveryReques
 
 const deliveryAssignController = new DeliveryAssignController();
 routes.put("/delivery/assign-delivery/:id", authCheck, deliveryAssignController.handle);
+
+const finishDeliveryController = new FinishDeliveryController();
+routes.put("/delivery/finish-delivery/:id", authCheck, finishDeliveryController.handle);
+
 
 export { routes };
