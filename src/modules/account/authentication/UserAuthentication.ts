@@ -10,9 +10,9 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 interface IUserAuthentication {
-    username: string,
-    userCategory: string,
-    password: string,
+    username: string;
+    userCategory: string;
+    password: string;
 }
 
 export class UserAuthentication {

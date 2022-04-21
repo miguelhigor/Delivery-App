@@ -27,6 +27,6 @@ app.use(
             message: "Internal Server Error",
         });
     }
-)
+);
 
 app.listen(port, () => console.log(`Server is running on port ${port}...`));

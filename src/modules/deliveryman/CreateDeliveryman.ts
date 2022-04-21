@@ -32,8 +32,8 @@ export class CreateDeliveryman {
                 username,
                 password: hashPassword,
             }
-        })
+        });
 
-        return savedDeliveryman
+        return savedDeliveryman;
     }
 }
