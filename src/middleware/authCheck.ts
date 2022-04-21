@@ -16,7 +16,7 @@ export async function authCheck(req: Request, res: Response, next: NextFunction)
 
     if (!authHeader) {
         return res.status(401).json({
-            message: "Authorization token not provided!"
+            message: "Authentication token not provided!"
         });
     }
 
