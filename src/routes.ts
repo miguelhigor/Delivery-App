@@ -2,7 +2,8 @@ import { Router } from "express";
 import { authCheck } from "./middleware/authCheck";
 import { UserAuthenticationController } from "./modules/account/authentication/UserAuthenticationController";
 import { CreateClientController } from "./modules/clients/CreateClientController";
-import { CreateDeliveryController } from "./modules/deliveries/CreateDeliveryController";
+import { CreateDeliveryController } from "./modules/deliveries/createDelivery/CreateDeliveryController";
+import { FindOpenDeliveryRequestsController } from "./modules/deliveries/findOpenDeliveryRequests/FindOpenDeliveryRequestsController";
 import { CreateDeliverymanController } from "./modules/deliveryman/CreateDeliverymanController";
 
 const routes = Router();
@@ -22,5 +23,8 @@ routes.post("/deliveryman", createDeliverymanController.handle);
 // Deliveries
 const createDeliveryController = new CreateDeliveryController();
 routes.post("/delivery", authCheck, createDeliveryController.handle);
+
+const findOpenDeliveryRequestsController = new FindOpenDeliveryRequestsController();
+routes.get("/delivery/open-delivery-requests", findOpenDeliveryRequestsController.handle);
 
 export { routes };
