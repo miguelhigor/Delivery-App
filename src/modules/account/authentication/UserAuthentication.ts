@@ -11,16 +11,16 @@ if (process.env.NODE_ENV !== 'production') {
 
 interface IUserAuthentication {
     username: string;
-    userCategory: string;
+    userProfile: string;
     password: string;
 }
 
 export class UserAuthentication {
-    async execute({ username, userCategory = "", password }: IUserAuthentication) {
+    async execute({ username, userProfile, password }: IUserAuthentication) {
 
         const [user]: Clients[] | Deliveryman[] = await prisma.$queryRaw`
             SELECT username, password, id 
-            FROM ${Prisma.raw(userCategory)} 
+            FROM ${Prisma.raw(userProfile)} 
             WHERE username=${username} 
             LIMIT 1
         `;

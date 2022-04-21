@@ -6,15 +6,17 @@ export class UserAuthenticationController {
         const {
             body: {
                 username,
-                userCategory,
                 password,
+            },
+            params: {
+                userProfile
             }
         } = req;
 
         const userAuthentication = new UserAuthentication();
         const token = await userAuthentication.execute({
             username,
-            userCategory,
+            userProfile,
             password,
         });
 

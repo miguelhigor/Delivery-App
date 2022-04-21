@@ -16,7 +16,7 @@ const routes = Router();
  * Authentication
  */
 const userAuthenticationController = new UserAuthenticationController();
-routes.post("/auth", userAuthenticationController.handle);
+routes.post("/auth/:userProfile", userAuthenticationController.handle);
 
 /**
  * Clients
