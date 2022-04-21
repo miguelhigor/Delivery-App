@@ -3,6 +3,7 @@ import { authCheck } from "./middleware/authCheck";
 import { UserAuthenticationController } from "./modules/account/authentication/UserAuthenticationController";
 import { CreateClientController } from "./modules/clients/CreateClientController";
 import { CreateDeliveryController } from "./modules/deliveries/createDelivery/CreateDeliveryController";
+import { DeliveryAssignController } from "./modules/deliveries/deliveryAssign/DeliveryAssignController";
 import { FindOpenDeliveryRequestsController } from "./modules/deliveries/findOpenDeliveryRequests/FindOpenDeliveryRequestsController";
 import { CreateDeliverymanController } from "./modules/deliveryman/CreateDeliverymanController";
 
@@ -26,5 +27,8 @@ routes.post("/delivery", authCheck, createDeliveryController.handle);
 
 const findOpenDeliveryRequestsController = new FindOpenDeliveryRequestsController();
 routes.get("/delivery/open-delivery-requests", authCheck, findOpenDeliveryRequestsController.handle);
+
+const deliveryAssignController = new DeliveryAssignController();
+routes.put("/delivery/assign-delivery/:id", authCheck, deliveryAssignController.handle);
 
 export { routes };
