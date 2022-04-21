@@ -25,6 +25,6 @@ const createDeliveryController = new CreateDeliveryController();
 routes.post("/delivery", authCheck, createDeliveryController.handle);
 
 const findOpenDeliveryRequestsController = new FindOpenDeliveryRequestsController();
-routes.get("/delivery/open-delivery-requests", findOpenDeliveryRequestsController.handle);
+routes.get("/delivery/open-delivery-requests", authCheck, findOpenDeliveryRequestsController.handle);
 
 export { routes };
