@@ -1,7 +1,8 @@
 import { Router } from "express";
 import { authCheck } from "./middleware/authCheck";
 import { UserAuthenticationController } from "./modules/account/authentication/UserAuthenticationController";
-import { CreateClientController } from "./modules/clients/CreateClientController";
+import { CreateClientController } from "./modules/clients/createClient/CreateClientController";
+import { FindDeliveriesByClientController } from "./modules/clients/findDeliveriesByClient/FindDeliveriesByClientController";
 import { CreateDeliveryController } from "./modules/deliveries/createDelivery/CreateDeliveryController";
 import { DeliveryAssignController } from "./modules/deliveries/deliveryAssign/DeliveryAssignController";
 import { FindOpenDeliveryRequestsController } from "./modules/deliveries/findOpenDeliveryRequests/FindOpenDeliveryRequestsController";
@@ -16,6 +17,9 @@ routes.post("/auth", userAuthenticationController.handle);
 // Clients
 const createClientController = new CreateClientController();
 routes.post("/client", createClientController.handle);
+
+const findDeliveriesByClient = new FindDeliveriesByClientController();
+routes.get("/client/deliveries", authCheck, findDeliveriesByClient.handle);
 
 // Deliveryman
 const createDeliverymanController = new CreateDeliverymanController();
