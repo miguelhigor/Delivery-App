@@ -26,7 +26,7 @@ export async function authCheck(req: Request, res: Response, next: NextFunction)
         const key: Secret = process.env.TOKEN_KEY as Secret;
         const { sub } = verify(authToken, key) as IPayload;
 
-        req.clientId = sub;
+        req.userId = sub;
 
         return next();
     } catch (error) {

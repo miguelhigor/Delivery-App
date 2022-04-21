@@ -6,26 +6,38 @@ import { FindDeliveriesByClientController } from "./modules/clients/findDeliveri
 import { CreateDeliveryController } from "./modules/deliveries/createDelivery/CreateDeliveryController";
 import { DeliveryAssignController } from "./modules/deliveries/deliveryAssign/DeliveryAssignController";
 import { FindOpenDeliveryRequestsController } from "./modules/deliveries/findOpenDeliveryRequests/FindOpenDeliveryRequestsController";
-import { CreateDeliverymanController } from "./modules/deliveryman/CreateDeliverymanController";
+import { CreateDeliverymanController } from "./modules/deliveryman/createDeliveryman/CreateDeliverymanController";
+import { FindDeliveriesByDeliverymanController } from "./modules/deliveryman/findDeliveriesByDeliveryman/FindDeliveriesByDeliverymanController";
 
 const routes = Router();
 
-// Authentication
+/**
+ * Authentication
+ */
 const userAuthenticationController = new UserAuthenticationController();
 routes.post("/auth", userAuthenticationController.handle);
 
-// Clients
+/**
+ * Clients
+ */
 const createClientController = new CreateClientController();
 routes.post("/client", createClientController.handle);
 
 const findDeliveriesByClient = new FindDeliveriesByClientController();
 routes.get("/client/deliveries", authCheck, findDeliveriesByClient.handle);
 
-// Deliveryman
+/**
+ * Deliveryman
+ */
 const createDeliverymanController = new CreateDeliverymanController();
 routes.post("/deliveryman", createDeliverymanController.handle);
 
-// Deliveries
+const findDeliveriesByDeliveryman = new FindDeliveriesByDeliverymanController();
+routes.get("/deliveryman/deliveries", authCheck, findDeliveriesByDeliveryman.handle);
+
+/**
+ * Deliveries
+ */
 const createDeliveryController = new CreateDeliveryController();
 routes.post("/delivery", authCheck, createDeliveryController.handle);
 

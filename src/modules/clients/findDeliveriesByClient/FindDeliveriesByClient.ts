@@ -1,17 +1,18 @@
 import { prisma } from "../../../database/prismaClient";
 
 interface IFindDeliveriesByClient {
-    clientId: string;
+    userId: string;
 }
 
 export class FindDeliveriesByClient {
-    async execute({ clientId }: IFindDeliveriesByClient) {
+    async execute({ userId }: IFindDeliveriesByClient) {
         const deliveriesByClient = await prisma.clients.findFirst({
             select: {
+                id: true,
                 deliveries: true
             },
             where: {
-                id: clientId,
+                id: userId,
             },
         });
 

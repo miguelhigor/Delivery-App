@@ -3,10 +3,10 @@ import { FindDeliveriesByClient } from "./FindDeliveriesByClient";
 
 export class FindDeliveriesByClientController {
     async handle(req: Request, res: Response) {
-        const { clientId } = req;
+        const { userId } = req;
         const findDeliveriesByClient = new FindDeliveriesByClient();
         const deliveriesByClient = await findDeliveriesByClient.execute({
-            clientId
+            userId
         });
 
         return res.json(deliveriesByClient);
